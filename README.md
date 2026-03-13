@@ -46,6 +46,35 @@ The `main.rs` file walks through every core concept from the chapter with annota
 | Pig Latin | End-of-chapter exercise 2: string transformation with Unicode-aware character handling |
 | Employee directory | End-of-chapter exercise 3: nested `HashMap<String, Vec>` with binary search insertion |
 
+## Featured Code
+
+`entry().or_insert()` with binary search insertion from [`src/directory.rs`](src/directory.rs):
+
+```rust
+fn add_employee_to_department(&mut self, employee_name: &str, department_name: &str) {
+    let dept = self.departments
+        .entry(String::from(department_name))
+        .or_insert(Department { employees: Vec::new() });
+
+    // could use BTreeMap for even faster shift-less inserts in the future here
+    // But this is a Vector exercise
+    // Approach	                Search	    Insert/Shift	Total
+    // push + sort	            —	        O(n log n)	    O(n log n)
+    // binary search + insert	O(log n)	O(n) shift	    O(n)
+    // BTreeMap (future)	    O(log n)	O(log n)	    O(log n)
+    let position = dept.employees
+        .binary_search_by_key(&employee_name, |e| e.name.as_str());
+
+    // determine the position in the Vector we can insert this Employee at to maintain sorting
+    let insert_at = match position {
+        Ok(i) | Err(i) => i,
+    };
+
+    // Insert the employee at the proper position
+    dept.employees.insert(insert_at, Employee { name: String::from(employee_name) });
+}
+```
+
 ## Modules
 
 ### `median` — `src/median.rs`
