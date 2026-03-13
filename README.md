@@ -9,11 +9,25 @@ Yellow: 50
 Blue: 10
 {"Blue": 25}
 {"Blue": 10, "Yellow": 50}
-{"world": 2, "wonderful": 1, "hello": 1}
+{"hello": 1, "wonderful": 1, "world": 2}
 Median: 5.5
 Mode: 9
-Stupid is Tupidsay in pig latin.
-Challenge 3!
+Stupid is Tupid-say in pig latin.
+E: Bob, D: Sales
+E: Sally, D: Engineering
+E: Amir, D: Sales
+Sales Department:
+- Amir
+- Bob
+=======================
+ALL DEPARTMENTS REPORT:
+----------------------
+Sales Department:
+- Amir
+- Bob
+Engineering Department:
+- Sally
+=======================
 ```
 
 ## What this covers
@@ -28,6 +42,9 @@ The `main.rs` file walks through every core concept from the chapter with annota
 | Overwriting a value | Re-inserting an existing key replaces its value |
 | `entry` / `or_insert` | Insert only if the key is absent |
 | Updating based on old value | Using `or_insert` to get a mutable reference and increment a counter |
+| Median & mode | End-of-chapter exercise 1: stats on a `Vec<i32>` using sorting and a frequency `HashMap` |
+| Pig Latin | End-of-chapter exercise 2: string transformation with Unicode-aware character handling |
+| Employee directory | End-of-chapter exercise 3: nested `HashMap<String, Vec>` with binary search insertion |
 
 ## Modules
 
@@ -54,12 +71,13 @@ Pig Latin converter — the second end-of-chapter exercise from 8.3.
 - Preserves capitalization of the original word.
 - Returns `None` for an empty string.
 
-### `challenge3` — `src/challenge3.rs`
-*In progress.* Employee directory — the third end-of-chapter exercise from 8.3.
+### `directory` — `src/directory.rs`
+Employee directory — the third end-of-chapter exercise from 8.3.
 
 - Accepts text commands to add employees to departments (e.g. `"Add Sally to Engineering"`).
 - Retrieves all people in a given department, sorted alphabetically.
-- Retrieves all employees across the whole company, sorted alphabetically.
+- Retrieves all employees across the whole company by department, sorted alphabetically.
+- Uses binary search insertion to maintain sorted order at storage time — O(n) per insert vs O(n log n) for push + sort.
 
 ## Running
 
@@ -130,6 +148,25 @@ Tests are colocated with each module in their respective `#[cfg(test)]` blocks.
     ✔ capital_consonant_word_returns_capital_consonant_word
     ✔ uppercase_vowel_word_preserves_capitalization_with_hay_suffix
     ✔ all_caps_consonant_word_capitalizes_first_letter_of_result
+```
+
+### 4. `directory` tests — `src/directory.rs`
+
+10 unit tests covering empty directory, adding employees to new and existing departments, command parsing, robustness against malformed input, and alphabetical ordering.
+
+```
+▼ directory
+  ▼ tests
+    ✔ new_creates_empty_directory
+    ✔ add_employee_creates_new_department
+    ✔ add_employee_stores_correct_name
+    ✔ add_second_employee_to_same_department
+    ✔ add_employees_to_different_departments
+    ✔ send_text_command_adds_employee
+    ✔ send_text_command_appends_to_existing_department
+    ✔ send_text_command_empty_string_does_not_panic
+    ✔ send_text_command_missing_department_does_not_panic
+    ✔ employees_in_department_are_sorted_alphabetically
 ```
 
 ## Reference
