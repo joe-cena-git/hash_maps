@@ -32,13 +32,20 @@ Computes the **mode** (most frequently occurring value) of a `Vec<i32>`, returne
 - Returns `None` for an empty vector.
 - Tie-breaking between equally frequent values is not guaranteed (HashMap iteration order is non-deterministic).
 
-### `challenge2` — `src/challenge2.rs`
-*In progress.* Pig Latin converter — the first end-of-chapter exercise from 8.3:
-> Convert strings to Pig Latin. The first consonant of each word is moved to the end and *-ay* is appended (`first` → `irst-fay`). Words starting with a vowel get *-hay* appended (`apple` → `apple-hay`).
+### `pig_latin` — `src/pig_latin.rs`
+Pig Latin converter — the first end-of-chapter exercise from 8.3.
+
+- Consonant-initial words: moves the first consonant to the end and appends *-ay* (`first` → `irst-fay`).
+- Vowel-initial words: appends *-hay* (`apple` → `apple-hay`).
+- Preserves capitalization of the original word.
+- Returns `None` for an empty string.
 
 ### `challenge3` — `src/challenge3.rs`
-*In progress.* Employee directory — the second end-of-chapter exercise from 8.3:
-> Build a text interface to add employees to departments (e.g. `"Add Sally to Engineering"`), and retrieve all people in a department or the whole company, sorted alphabetically.
+*In progress.* Employee directory — the second end-of-chapter exercise from 8.3.
+
+- Accepts text commands to add employees to departments (e.g. `"Add Sally to Engineering"`).
+- Retrieves all people in a given department, sorted alphabetically.
+- Retrieves all employees across the whole company, sorted alphabetically.
 
 ## Running
 
@@ -52,33 +59,77 @@ cargo run
 cargo test
 ```
 
-Tests are colocated with each module. `median` and `mode` each have 10 unit tests covering edge cases such as empty input, single elements, negative numbers, even/odd lengths, and large vectors.
+Tests are colocated with each module in their respective `#[cfg(test)]` blocks.
+
+### 1. `median` tests — `src/median.rs`
+
+10 unit tests covering empty input, odd/even lengths, identical elements, negative numbers, unsorted input, and floating-point averages.
 
 ```
-median
+▼ median
   ▼ tests
     ✔ median_empty_vector_returns_none
-    ✔ median_all_identical_elements
-    ✔ median_even_count_non_integer_result
-    ✔ median_even_count_returns_average_of_two_middle_elements
-    ✔ median_negative_numbers
     ✔ median_single_element_returns_that_element
-    ✔ median_mix_of_negative_and_positive_even_count
-    ✔ median_odd_count_returns_middle_element
     ✔ median_two_elements_returns_average
+    ✔ median_odd_count_returns_middle_element
+    ✔ median_even_count_returns_average_of_two_middle_elements
+    ✔ median_even_count_non_integer_result
+    ✔ median_all_identical_elements
+    ✔ median_negative_numbers
+    ✔ median_mix_of_negative_and_positive_even_count
     ✔ median_unsorted_input_is_sorted_before_calculating
+```
+
+### 2. `mode` tests — `src/mode.rs`
+
+10 unit tests covering empty input, single elements, all-identical elements, mode position in the vector, negative numbers, two-element vectors, and large inputs.
+
+```
 ▼ mode
   ▼ tests
     ✔ empty_vector_returns_none
-    ✔ clear_single_mode
-    ✔ all_same_elements_returns_that_element
-    ✔ negative_numbers_mode
     ✔ single_element_returns_that_element
-    ✔ mode_at_end_of_vector
-    ✔ mode_at_start_of_vector
-    ✔ two_elements_different_values_mode_is_one_of_them
     ✔ two_elements_same_value
+    ✔ two_elements_different_values_mode_is_one_of_them
+    ✔ all_same_elements_returns_that_element
+    ✔ clear_single_mode
+    ✔ mode_at_start_of_vector
+    ✔ mode_at_end_of_vector
+    ✔ negative_numbers_mode
     ✔ large_vector_with_clear_mode
+```
+
+### 3. `pig_latin` tests — `src/pig_latin.rs`
+
+10 unit tests covering empty input, vowel words, consonant words, single-letter words, and capitalization handling (lowercase, title case, all-caps).
+
+```
+▼ pig_latin
+  ▼ tests
+    ✔ empty_string_returns_none
+    ✔ single_vowel_letter_returns_hay_suffix
+    ✔ single_consonant_letter_returns_consonant_word
+    ✔ lowercase_vowel_word_returns_hay_suffix
+    ✔ lowercase_consonant_word_returns_lowercase_consonant_word
+    ✔ two_letter_consonant_word_returns_consonant_word
+    ✔ capital_vowel_word_returns_capital_vowel_word
+    ✔ capital_consonant_word_returns_capital_consonant_word
+    ✔ uppercase_vowel_word_preserves_capitalization_with_hay_suffix
+    ✔ all_caps_consonant_word_capitalizes_first_letter_of_result
+```
+
+## Output
+
+```
+Yellow: 50
+Blue: 10
+{"Blue": 25}
+{"Blue": 10, "Yellow": 50}
+{"world": 2, "wonderful": 1, "hello": 1}
+Median: 5.5
+Mode: 9
+Stupid is Tupidsay in pig latin.
+Challenge 3!
 ```
 
 ## Reference
