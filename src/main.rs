@@ -3,8 +3,9 @@ use std::collections::HashMap;
 mod median;
 mod mode;
 
-mod challenge2;
+mod pig_latin;
 mod challenge3;
+
 fn main() {
     // Hash maps store their data on the heap
     {
@@ -83,7 +84,14 @@ fn main() {
         None => println!("Mode: n/a")
     };
     
-    challenge2::challenge2func();
+    let word: String = String::from("Stupid");
+    let pig_latin_word = pig_latin::to_pig_latin(&word);
+    match pig_latin_word {
+        Some(value) => println!("{word} is {value} in pig latin."),
+        None => println!("Can't convert n/a to pig latin.")
+    }
+    
+
     challenge3::challenge3func();
 
 
