@@ -1,6 +1,6 @@
-# Hash Maps — The Rust Programming Language, Chapter 8.3
+# Hash Maps — Rust Chapter 8.3
 
-A hands-on Rust project following [Chapter 8.3: Storing Keys with Associated Values in Hash Maps](https://doc.rust-lang.org/book/ch08-03-hash-maps.html) of *The Rust Programming Language*.
+A hands-on Rust project following [Chapter 8.3: Storing Keys with Associated Values in Hash Maps](https://doc.rust-lang.org/book/ch08-03-hash-maps.html).
 
 ## What this covers
 
@@ -53,6 +53,33 @@ cargo test
 ```
 
 Tests are colocated with each module. `median` and `mode` each have 10 unit tests covering edge cases such as empty input, single elements, negative numbers, even/odd lengths, and large vectors.
+
+```
+median
+  ▼ tests
+    ✔ median_empty_vector_returns_none
+    ✔ median_all_identical_elements
+    ✔ median_even_count_non_integer_result
+    ✔ median_even_count_returns_average_of_two_middle_elements
+    ✔ median_negative_numbers
+    ✔ median_single_element_returns_that_element
+    ✔ median_mix_of_negative_and_positive_even_count
+    ✔ median_odd_count_returns_middle_element
+    ✔ median_two_elements_returns_average
+    ✔ median_unsorted_input_is_sorted_before_calculating
+▼ mode
+  ▼ tests
+    ✔ empty_vector_returns_none
+    ✔ clear_single_mode
+    ✔ all_same_elements_returns_that_element
+    ✔ negative_numbers_mode
+    ✔ single_element_returns_that_element
+    ✔ mode_at_end_of_vector
+    ✔ mode_at_start_of_vector
+    ✔ two_elements_different_values_mode_is_one_of_them
+    ✔ two_elements_same_value
+    ✔ large_vector_with_clear_mode
+```
 
 ## Reference
 
