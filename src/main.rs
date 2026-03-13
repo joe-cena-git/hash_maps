@@ -4,7 +4,7 @@ mod median;
 mod mode;
 
 mod pig_latin;
-mod challenge3;
+mod directory;
 
 fn main() {
     // Hash maps store their data on the heap
@@ -91,8 +91,14 @@ fn main() {
         None => println!("Can't convert n/a to pig latin.")
     }
     
+    let mut dir = directory::Directory::new();
+    
+    dir.send_text_command("Add Bob to Sales");
+    dir.send_text_command("Add Sally to Engineering");
+    dir.send_text_command("Add Amir to Sales");
 
-    challenge3::challenge3func();
+    dir.list_employees_in_department("Sales");
 
+    dir.list_all_employees();
 
 }
