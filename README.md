@@ -2,6 +2,20 @@
 
 A hands-on Rust project following [Chapter 8.3: Storing Keys with Associated Values in Hash Maps](https://doc.rust-lang.org/book/ch08-03-hash-maps.html).
 
+## Output
+
+```
+Yellow: 50
+Blue: 10
+{"Blue": 25}
+{"Blue": 10, "Yellow": 50}
+{"world": 2, "wonderful": 1, "hello": 1}
+Median: 5.5
+Mode: 9
+Stupid is Tupidsay in pig latin.
+Challenge 3!
+```
+
 ## What this covers
 
 The `main.rs` file walks through every core concept from the chapter with annotated examples:
@@ -116,20 +130,6 @@ Tests are colocated with each module in their respective `#[cfg(test)]` blocks.
     ✔ capital_consonant_word_returns_capital_consonant_word
     ✔ uppercase_vowel_word_preserves_capitalization_with_hay_suffix
     ✔ all_caps_consonant_word_capitalizes_first_letter_of_result
-```
-
-## Output
-
-```
-Yellow: 50
-Blue: 10
-{"Blue": 25}
-{"Blue": 10, "Yellow": 50}
-{"world": 2, "wonderful": 1, "hello": 1}
-Median: 5.5
-Mode: 9
-Stupid is Tupidsay in pig latin.
-Challenge 3!
 ```
 
 ## Reference
