@@ -33,7 +33,7 @@ Computes the **mode** (most frequently occurring value) of a `Vec<i32>`, returne
 - Tie-breaking between equally frequent values is not guaranteed (HashMap iteration order is non-deterministic).
 
 ### `pig_latin` — `src/pig_latin.rs`
-Pig Latin converter — the first end-of-chapter exercise from 8.3.
+Pig Latin converter — the second end-of-chapter exercise from 8.3.
 
 - Consonant-initial words: moves the first consonant to the end and appends *-ay* (`first` → `irst-fay`).
 - Vowel-initial words: appends *-hay* (`apple` → `apple-hay`).
@@ -41,7 +41,7 @@ Pig Latin converter — the first end-of-chapter exercise from 8.3.
 - Returns `None` for an empty string.
 
 ### `challenge3` — `src/challenge3.rs`
-*In progress.* Employee directory — the second end-of-chapter exercise from 8.3.
+*In progress.* Employee directory — the third end-of-chapter exercise from 8.3.
 
 - Accepts text commands to add employees to departments (e.g. `"Add Sally to Engineering"`).
 - Retrieves all people in a given department, sorted alphabetically.
